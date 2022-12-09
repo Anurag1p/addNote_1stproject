@@ -1,0 +1,82 @@
+<style>
+	td,
+	table {
+		border: solid 1px gray;
+		border-collapse: collapse;
+	}
+
+	.input {
+		padding: 8px;
+		width: 80%;
+	}
+
+	.btn {
+		padding: 10px;
+		width: 180px;
+		margin-top: 10px;
+	}
+	
+</style>
+
+<table style="width: 100%; cellpadding: 0px">
+	<tr>
+		<td style="width: 70%; vertical-align: top">
+			<table style="width: 100%; cellpadding: 0px">
+				<tr>
+					<td style="width: 10%">Sr.</td>
+					<td style="width: 25%">Name</td>
+					<td style="width: 15%">Phone</td>
+					<td style="width: 25%">Address</td>
+					<td style="width: 25%">Action</td>
+				</tr>
+				<tbody id="tbl_data"></tbody>
+			</table>
+		</td>
+	
+			<td style="width: 30%">
+				<input id="txt_name" class="input" type="text" placeholder="Name"/>
+				<br />
+				<input id="txt_phone" class="input" type="text" placeholder="Phone"/>
+				<br />
+				<input id="txt_address" class="input" type="text" placeholder="Address" />
+				<br />
+				<input onclick="getData()" id="button" class="btn" type="button" value="Submit" />
+				
+		
+		</td>
+
+		<td></td>
+	</tr>
+</table>
+<script>
+	let counter = 0;
+	function getData() {
+		counter++;
+		let name = document.getElementById("txt_name").value;
+		let phone = document.getElementById("txt_phone").value;
+		let address = document.getElementById("txt_address").value;
+		
+		if(name.length >=5 && (phone.length ==10||phone.length ==11) && address.length >=15){
+			let dataLine ='<tr><td style="width:10%">'+counter+'</td><td style="width:25%">'+name+'</td><td style="width:15%">'+phone+'</td><td style="width:25%">'+address+'</td><td style="width:25%">Action</td></tr>';
+			document.getElementById("tbl_data").innerHTML =
+			document.getElementById("tbl_data").innerHTML + dataLine;
+		}else{
+			// alert("please fill required filled.")
+			let nameError =  document.getElementById('txt_name').style.border = "1px solid red";
+			// let phoneError =  document.getElementById('txt_name').style = border : "1px solid red";
+		}
+
+
+	}
+
+	const button = document.getElementById("button");
+	 button.addEventListener('click',function hadnleClick(event){
+		event.preventDefault();
+		const inputs = document.querySelectorAll("#txt_name, #txt_phone, #txt_address");
+
+		inputs.forEach(input => {
+			input.value ='';
+		});
+	 })
+	 
+</script>
